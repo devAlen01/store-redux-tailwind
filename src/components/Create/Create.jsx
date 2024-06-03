@@ -10,15 +10,19 @@ const Create = () => {
   const { product } = useSelector((state) => state);
 
   const addProduct = () => {
-    let newProduct = {
-      id: product.length ? product[product.length - 1].id + 1 : 1,
-      name,
-      imageUrl,
-      price,
-      description,
-      rating: Math.floor(Math.random() * 5),
-    };
-    dispatch({ type: "CREATE_PRODUCT", payload: newProduct });
+    if (name !== "" && imageUrl !== "" && price !== "" && description !== "") {
+      let newProduct = {
+        id: product.length ? product[product.length - 1].id + 1 : 1,
+        name,
+        imageUrl,
+        price,
+        description,
+        rating: Math.floor(Math.random() * 5),
+      };
+      dispatch({ type: "CREATE_PRODUCT", payload: newProduct });
+    } else {
+      alert("Zapolnite vse polya!!!");
+    }
   };
 
   return (
